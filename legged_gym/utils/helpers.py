@@ -219,3 +219,31 @@ class PolicyExporterLSTM(torch.nn.Module):
         traced_script_module.save(path)
 
     
+def log_env_cfg(env_cfg_instance, log_dir):
+    """
+    Saving env_cfg of each training
+    """
+
+    from datetime import datetime
+    import inspect
+
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)
+
+    env_cfg_log_path = os.path.join(log_dir, '_env_cfg_.py')
+
+    try:
+        # Child class
+        env_cfg_class = env_cfg_instance.__class__
+        # Parent Class
+        legged_robot_cfg_class  =  env_cfg_class.__bases__[0]
+        # Attain class source
+        env_cfg_class_source = inspect.getsource(env_cfg_class)
+        legged_robot_cfg_class_source = inspect.getsource(legged_robot_cfg_class)
+        with open(env_cfg_log_path, 'w') as f:
+            f.write(env_cfg_class_source)
+            f.write("\n\n")
+            f.write(legged_robot_cfg_class_source)
+        print(f"\033[32m\nEnv Cfg saved to \"{env_cfg_log_path}\" \n\033[0m")
+    except Exception as e:
+        print(f"\033[31m\nEnv Cfg failed to save: {e} \n\033[0m")

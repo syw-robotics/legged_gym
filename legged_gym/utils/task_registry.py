@@ -101,7 +101,7 @@ class TaskRegistry():
                             headless=args.headless)
         return env, env_cfg
 
-    def make_alg_runner(self, env, name=None, args=None, train_cfg=None, log_root="default") -> Tuple[OnPolicyRunner, LeggedRobotCfgPPO]:
+    def make_alg_runner(self, env, name=None, args=None, train_cfg=None, log_root="default") -> Tuple[OnPolicyRunner, LeggedRobotCfgPPO, str]:
         """ Creates the training algorithm  either from a registered namme or from the provided config file.
 
         Args:
@@ -119,6 +119,7 @@ class TaskRegistry():
         Returns:
             PPO: The created algorithm
             Dict: the corresponding config file
+            str: the log directory
         """
         # if no args passed get command line arguments
         if args is None:
@@ -152,7 +153,7 @@ class TaskRegistry():
             resume_path = get_load_path(log_root, load_run=train_cfg.runner.load_run, checkpoint=train_cfg.runner.checkpoint)
             print(f"Loading model from: {resume_path}")
             runner.load(resume_path)
-        return runner, train_cfg
+        return runner, train_cfg, log_dir
 
 # make global task registry
 task_registry = TaskRegistry()
