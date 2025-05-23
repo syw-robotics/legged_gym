@@ -1,0 +1,20 @@
+[project]
+name = "legged-gym"
+version = "1.0.0"
+authors = [
+  { name = "Nikita Rudin", email = "rudinn@ethz.ch" },
+]
+description = "Isaac Gym environments for Legged Robots"
+readme = "README.md"
+requires-python = "==3.8"
+license = { file = "LICENSE" }
+dependencies = [
+    "isaacgym",
+    "rsl-rl",
+    "matplotlib",
+    "tensorboard"
+]
+
+[project.urls]
+homepage = "https://github.com/leggedrobotics/legged_gym"
+

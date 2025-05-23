@@ -8,6 +8,23 @@ It includes all components needed for sim-to-real transfer: actuator network, fr
 
 ---
 
+# :bell: Use `uv` instead of `conda`
+This fork uses uv as python package manager
+- `uv init`: create venv
+- `uv pip install -e .`: uv pip install packages
+
+### Installation 
+1. Create a new python virtual env with python 3.8
+3. Install Isaac Gym
+4. Install rsl_rl
+5. Install legged_gym
+
+<br>
+
+---
+
+# Original `legged_gym`'s README is as follows: 
+---
 ### :bell: Announcement (09.01.2024) ###
 
 With the shift from Isaac Gym to Isaac Sim at NVIDIA, we have migrated all the environments from this work to [Isaac Lab](https://github.com/isaac-sim/IsaacLab). Following this migration, this repository will receive limited updates and support. We encourage all users to migrate to the new framework for their applications.
